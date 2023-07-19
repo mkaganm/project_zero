@@ -15,7 +15,7 @@ FROM alpine:latest
 RUN mkdir /app
 
 COPY --from=builder /loggerapp/loggerservice /loggerapp
-COPY dev.env ./loggerservice.env
+COPY loggerservice.env ./loggerservice.env
 
 EXPOSE 3003:3003
 

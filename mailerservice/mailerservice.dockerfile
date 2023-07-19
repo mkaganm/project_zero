@@ -15,7 +15,7 @@ FROM alpine:latest
 RUN mkdir /mailerapp
 
 COPY --from=builder /mailerapp/mailerservice /mailerapp
-COPY dev.env ./mailerservice.env
+COPY mailerservice.env ./mailerservice.env
 
 EXPOSE 3002:3002
 

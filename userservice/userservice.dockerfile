@@ -15,7 +15,7 @@ FROM alpine:latest
 RUN mkdir /app1
 
 COPY --from=builder /userapp/userservice /userapp
-COPY ./dev.env ./dev.env
+COPY userservice.env ./userservice.env
 
 EXPOSE 3001:3001
 

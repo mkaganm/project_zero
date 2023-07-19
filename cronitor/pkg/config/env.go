@@ -24,12 +24,12 @@ type envConfigs struct {
 	PostgresSSLMode string `mapstructure:"POSTGRES_SSL_MODE"`
 }
 
-// loadEnvVariables loads all environment variables from the dev.env file
+// loadEnvVariables loads all environment variables from the userservice.env file
 func loadEnvVariables() *envConfigs {
 	// Tell the viper the path/location of the configuration file
 	viper.AddConfigPath(".")
 	// Tell viper the name of the configuration file (without the extension)
-	viper.SetConfigName("dev")
+	viper.SetConfigName("cronitor")
 	// Tell viper the configuration type
 	viper.SetConfigType("env")
 

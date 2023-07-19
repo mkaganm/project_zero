@@ -24,12 +24,12 @@ type envConfigs struct {
 	MongoDb         string `mapstructure:"MONGO_DB"`
 }
 
-// loadEnvVariables loads all environment variables from the dev.env file
+// loadEnvVariables loads all environment variables from the userservice.env file
 func loadEnvVariables() *envConfigs {
 	// Tell the viper the path/location of the configuration file
 	viper.AddConfigPath(".")
 	// Tell viper the name of the configuration file (without the extension)
-	viper.SetConfigName("dev")
+	viper.SetConfigName("loggerservice")
 	// Tell viper the configuration type
 	viper.SetConfigType("env")
 

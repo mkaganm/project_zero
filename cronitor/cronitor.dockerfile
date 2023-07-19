@@ -15,6 +15,6 @@ FROM alpine:latest
 RUN mkdir /app
 
 COPY --from=builder /cronitorapp/cronitor /cronitorapp/cronitor
-COPY ./dev.env ./dev.env
+COPY cronitor.env ./cronitor.env
 
 CMD ["/cronitorapp/cronitor"]
