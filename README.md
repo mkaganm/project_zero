@@ -25,3 +25,9 @@
 - Incorrect login attempts are reset by a cron job.
 
 
+- TODO
+- [] grpc
+- [] rabbitmq
+- [] session for user
+- [] fiber cookie for user
+
