@@ -5,3 +5,4 @@
 /elasticsearch-data
 
 .idea/
+mailerservice/mailerservice.env
