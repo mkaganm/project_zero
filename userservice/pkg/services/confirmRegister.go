@@ -32,7 +32,7 @@ func ConfirmRegister(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -51,7 +51,7 @@ func ConfirmRegister(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -69,7 +69,7 @@ func ConfirmRegister(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -88,7 +88,7 @@ func ConfirmRegister(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -107,7 +107,7 @@ func ConfirmRegister(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -124,11 +124,10 @@ func ConfirmRegister(c *fiber.Ctx) error {
 			ErrorMessage: "failed to update user",
 		}
 
-		logger.SendErrLog(logger.ErrLog{
-			Level:   "[Critical]",
-			Source:  utils.CurrentTrace(),
-			Message: resp.ErrorMessage,
-			Error:   err.Error(),
+		logger.SendLog(logger.Log{
+			Source:   utils.CurrentTrace(),
+			Request:  req,
+			Response: resp,
 		})
 
 		return c.Status(fiber.StatusInternalServerError).JSON(resp)
@@ -157,7 +156,7 @@ func ConfirmRegister(c *fiber.Ctx) error {
 
 	logger.SendLog(logger.Log{
 		Source:   utils.CurrentTrace(),
-		Request:  request.String(),
+		Request:  req,
 		Response: resp,
 	})
 

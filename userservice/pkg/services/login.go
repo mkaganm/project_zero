@@ -33,7 +33,7 @@ func Login(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -52,7 +52,7 @@ func Login(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -70,7 +70,7 @@ func Login(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -89,7 +89,7 @@ func Login(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -111,7 +111,7 @@ func Login(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -142,7 +142,7 @@ func Login(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -152,12 +152,12 @@ func Login(c *fiber.Ctx) error {
 	err = repository.ResetLoginAttemptCount(&user)
 	utils.LogErr("Error while reset login attempt count", err)
 
-	response := Response{
+	resp := Response{
 		Status: "success",
 		Data:   make(map[string]interface{}),
 	}
 
-	response.Data["user"] = UserResponse{
+	resp.Data["user"] = UserResponse{
 		UserId:            user.Id,
 		Username:          user.Username,
 		FirstName:         user.FirstName,
@@ -173,9 +173,9 @@ func Login(c *fiber.Ctx) error {
 
 	logger.SendLog(logger.Log{
 		Source:   utils.CurrentTrace(),
-		Request:  request.String(),
-		Response: response,
+		Request:  req,
+		Response: resp,
 	})
 
-	return c.Status(fiber.StatusOK).JSON(response)
+	return c.Status(fiber.StatusOK).JSON(resp)
 }

@@ -28,6 +28,8 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
 
+# FOR JENKINS SETUP
+# docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
   jenkins:
     image: jenkins/jenkins:lts
     container_name: jenkins

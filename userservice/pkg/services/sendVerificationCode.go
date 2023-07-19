@@ -30,7 +30,7 @@ func SendVerificationCode(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -49,7 +49,7 @@ func SendVerificationCode(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -67,7 +67,7 @@ func SendVerificationCode(c *fiber.Ctx) error {
 
 		logger.SendLog(logger.Log{
 			Source:   utils.CurrentTrace(),
-			Request:  request.String(),
+			Request:  req,
 			Response: resp,
 		})
 
@@ -83,11 +83,10 @@ func SendVerificationCode(c *fiber.Ctx) error {
 			ErrorMessage: "error while sending verification code",
 		}
 
-		logger.SendErrLog(logger.ErrLog{
-			Level:   "[Critical]",
-			Source:  utils.CurrentTrace(),
-			Message: resp.ErrorMessage,
-			Error:   err.Error(),
+		logger.SendLog(logger.Log{
+			Source:   utils.CurrentTrace(),
+			Request:  req,
+			Response: resp,
 		})
 
 		return c.Status(fiber.StatusInternalServerError).JSON(resp)
@@ -114,7 +113,7 @@ func SendVerificationCode(c *fiber.Ctx) error {
 
 	logger.SendLog(logger.Log{
 		Source:   utils.CurrentTrace(),
-		Request:  request.String(),
+		Request:  req,
 		Response: resp,
 	})
 
