@@ -1,4 +1,4 @@
-FROM golang:1.20.5-alpine as builder
+FROM golang:1.20.5-alpine AS builder
 
 RUN mkdir /userapp
 
@@ -6,7 +6,7 @@ COPY . /userapp
 
 WORKDIR /userapp
 
-RUN CGO_ENABLED=0 go build -o mailerservice ./cmd/main.go
+RUN CGO_ENABLED=0 go build -o userservice ./cmd/main.go
 
 RUN chmod +x /userapp/userservice
 

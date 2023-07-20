@@ -14,20 +14,8 @@
 - 9200 elasticsearch
 - 5601 kibana
 
-# Topic: E-Commerce Project
-- User can verify their account through the email received upon registration.
-- User can reset their password via email if they forget it.
-- Logging is performed when a user logs in.
-- Logging is performed when a user makes an incorrect login attempt.
-- If a user makes more than 3 incorrect login attempts, their account will be locked. It can be unlocked by an admin.
-- User passwords must comply with specified rules.
-- Verification codes are deleted by a cron job.
-- Incorrect login attempts are reset by a cron job.
+# Micoroservice Project
 
 
-### TODO
-- [ ] grpc
-- [ ] rabbitmq
-- [ ] session for user
-- [ ] fiber cookie for user
+
 
