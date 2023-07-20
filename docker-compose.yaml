@@ -30,21 +30,21 @@ services:
 
 # FOR JENKINS SETUP
 # docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
-  jenkins:
-    image: jenkins/jenkins:lts
-    container_name: jenkins
-    restart: unless-stopped
-    privileged: true
-    user: root
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    environment:
-      JENKINS_ADMIN_PASSWORD: admin
-    volumes:
-      - jenkins_data:/var/lib/jenkins/data
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/local/bin/docker:/usr/local/bin/docker
+#  jenkins:
+#    image: jenkins/jenkins:lts
+#    container_name: jenkins
+#    restart: unless-stopped
+#    privileged: true
+#    user: root
+#    ports:
+#      - "8080:8080"
+#      - "50000:50000"
+#    environment:
+#      JENKINS_ADMIN_PASSWORD: admin
+#    volumes:
+#      - jenkins_data:/var/lib/jenkins/data
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - /usr/local/bin/docker:/usr/local/bin/docker
 
   mongo_db:
     image: mongo
