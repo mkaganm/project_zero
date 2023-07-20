@@ -1,9 +1,9 @@
 package main
 
 import (
-	"cronitor/pkg/config"
-	"cronitor/pkg/scripts"
-	"cronitor/pkg/utils"
+	"cronitor/internal/config"
+	"cronitor/internal/scripts"
+	"cronitor/internal/utils"
 	"github.com/robfig/cron/v3"
 )
 

@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"userservice/pkg/config"
-	"userservice/pkg/controller"
-	"userservice/pkg/data"
-	"userservice/pkg/utils"
+	"userservice/internal/api"
+	"userservice/internal/config"
+	"userservice/internal/data"
+	"userservice/internal/utils"
 )
 
 func main() {
@@ -24,7 +24,7 @@ func main() {
 	})
 
 	// Register routes
-	controller.RegisterRoutes(app)
+	api.RegisterRoutes(app)
 
 	// Listen on port
 	err := app.Listen(config.EnvConfigs.LocalServerPort)
