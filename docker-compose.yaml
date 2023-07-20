@@ -84,7 +84,7 @@ services:
     networks:
       - elk-network
     volumes:
-      - ./elasticsearch-data:/usr/share/elasticsearch/data
+      - elasticsearch-data:/usr/share/elasticsearch/data
 
   kibana:
     image: docker.elastic.co/kibana/kibana:7.10.0
