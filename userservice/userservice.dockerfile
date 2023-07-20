@@ -12,7 +12,7 @@ RUN chmod +x /userapp/userservice
 
 FROM alpine:latest
 
-RUN mkdir /app1
+RUN mkdir /userapp
 
 COPY --from=builder /userapp/userservice /userapp
 COPY userservice.env ./userservice.env

@@ -12,7 +12,7 @@ RUN chmod +x /loggerapp/loggerservice
 
 FROM alpine:latest
 
-RUN mkdir /app
+RUN mkdir /loggerapp
 
 COPY --from=builder /loggerapp/loggerservice /loggerapp
 COPY loggerservice.env ./loggerservice.env
