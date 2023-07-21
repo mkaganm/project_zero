@@ -3,7 +3,7 @@ package config
 import (
 	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/viper"
-	"mailerservice/pkg/utils"
+	"mailerservice/internal/utils"
 )
 
 // EnvConfigs is a global variable that contains all environment variables

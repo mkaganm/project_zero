@@ -6,3 +6,4 @@
 
 .idea/
 mailerservice/mailerservice.env
+/userservice/userservice.env

@@ -2,7 +2,7 @@ package mail
 
 import (
 	"log"
-	"mailerservice/pkg/config"
+	"mailerservice/internal/config"
 	"net/smtp"
 	"strconv"
 )

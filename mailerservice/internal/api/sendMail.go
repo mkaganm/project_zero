@@ -1,11 +1,11 @@
-package services
+package api
 
 import (
 	"encoding/json"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"mailerservice/pkg/config"
-	"mailerservice/pkg/mail"
+	"mailerservice/internal/config"
+	"mailerservice/internal/mail"
 )
 
 type sendMailRequest struct {

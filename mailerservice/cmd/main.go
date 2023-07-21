@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"mailerservice/pkg/config"
-	"mailerservice/pkg/controller"
-	"mailerservice/pkg/utils"
+	"mailerservice/internal/api"
+	"mailerservice/internal/config"
+	"mailerservice/internal/utils"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 	})
 
 	// Register routes
-	controller.RegisterRoutes(app)
+	api.RegisterRoutes(app)
 
 	// Listen on port
 	err := app.Listen(config.EnvConfigs.LocalServerPort)
