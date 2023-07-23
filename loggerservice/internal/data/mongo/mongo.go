@@ -14,7 +14,7 @@ import (
 
 var DSN *string
 
-type SuccessLog struct {
+type LogMongo struct {
 	ID             primitive.ObjectID `bson:"_id,omitempty"`
 	Source         string             `bson:"source"`
 	Request        interface{}        `bson:"request"`

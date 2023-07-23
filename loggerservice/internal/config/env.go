@@ -22,6 +22,7 @@ type envConfigs struct {
 	MongoUser       string `mapstructure:"MONGO_USER"`
 	MongoPass       string `mapstructure:"MONGO_PASS"`
 	MongoDb         string `mapstructure:"MONGO_DB"`
+	ElasticUrl      string `mapstructure:"ELASTIC_URL"`
 }
 
 // loadEnvVariables loads all environment variables from the userservice.env file

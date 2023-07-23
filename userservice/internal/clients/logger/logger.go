@@ -20,7 +20,7 @@ type Log struct {
 // SendLog sends log to mongo
 func SendLog(successLog Log) {
 
-	url := config.EnvConfigs.LoggerSuccessUrl
+	url := config.EnvConfigs.LoggerMongoUrl
 	successLog.Collection = "userservice"
 
 	data, err := json.Marshal(successLog)
