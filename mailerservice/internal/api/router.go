@@ -9,7 +9,7 @@ func RegisterRoutes(app *fiber.App) {
 
 	routes := app.Group("/api/v1/mailer")
 
-	routes.Use(ErrorHandler)
+	routes.Use(LoggingMiddleware)
 	routes.Post("/send-mail", SendMail)
 
 }
