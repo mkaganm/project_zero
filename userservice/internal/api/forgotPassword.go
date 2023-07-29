@@ -5,7 +5,6 @@ import (
 	"errors"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"userservice/internal/clients/logger"
 	"userservice/internal/data/repository"
 	"userservice/internal/utils"
 )
@@ -33,12 +32,6 @@ func ForgotPassword(c *fiber.Ctx) error {
 			ErrorMessage: errMsg,
 		}
 
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
-
 		return c.Status(fiber.StatusBadRequest).JSON(resp)
 	}
 
@@ -53,12 +46,6 @@ func ForgotPassword(c *fiber.Ctx) error {
 			ErrorMessage: errMsg,
 		}
 
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
-
 		return c.Status(fiber.StatusBadRequest).JSON(resp)
 	}
 
@@ -72,12 +59,6 @@ func ForgotPassword(c *fiber.Ctx) error {
 			ErrorMessage: errMsg,
 		}
 
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
-
 		return c.Status(fiber.StatusBadRequest).JSON(resp)
 
 	}
@@ -90,11 +71,6 @@ func ForgotPassword(c *fiber.Ctx) error {
 			Error:        err,
 			ErrorMessage: "no verification code found for this user",
 		}
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
 
 		return c.Status(fiber.StatusNotFound).JSON(resp)
 	}
@@ -110,12 +86,6 @@ func ForgotPassword(c *fiber.Ctx) error {
 			ErrorMessage: "invalid validation code for this user",
 		}
 
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
-
 		return c.Status(fiber.StatusForbidden).JSON(resp)
 	}
 
@@ -127,12 +97,6 @@ func ForgotPassword(c *fiber.Ctx) error {
 			Error:        err,
 			ErrorMessage: "user not found",
 		}
-
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
 
 		return c.Status(fiber.StatusNotFound).JSON(resp)
 	}
@@ -146,12 +110,6 @@ func ForgotPassword(c *fiber.Ctx) error {
 			Error:        err,
 			ErrorMessage: errMsg,
 		}
-
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
 
 		return c.Status(fiber.StatusBadRequest).JSON(resp)
 	}
@@ -167,12 +125,6 @@ func ForgotPassword(c *fiber.Ctx) error {
 			Error:        err,
 			ErrorMessage: "failed to update user",
 		}
-
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
 
 		return c.Status(fiber.StatusInternalServerError).JSON(resp)
 	}
@@ -195,12 +147,6 @@ func ForgotPassword(c *fiber.Ctx) error {
 		CreatedAt:         user.CreatedAt,
 		UpdatedAt:         user.UpdatedAt,
 	}
-
-	logger.SendLog(logger.Log{
-		Source:   utils.CurrentTrace(),
-		Request:  req,
-		Response: resp,
-	})
 
 	return c.Status(fiber.StatusOK).JSON(resp)
 }
