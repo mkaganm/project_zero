@@ -11,7 +11,7 @@ import (
 
 var DSN *string
 
-func InitDSN() {
+func init() {
 	dsn := createDSN()
 	DSN = &dsn
 }
@@ -30,8 +30,8 @@ func createDSN() string {
 	return dsn
 }
 
-// Init is a function that initializes the database
-func Init() *gorm.DB {
+// InitDB is a function that initializes the database
+func InitDB() *gorm.DB {
 
 	log.Default().Println("Connecting to database...")
 

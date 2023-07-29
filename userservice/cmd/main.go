@@ -4,7 +4,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"userservice/internal/api"
 	"userservice/internal/config"
-	"userservice/internal/data"
 	"userservice/internal/utils"
 )
 
@@ -12,8 +11,6 @@ func main() {
 
 	// Init env configs
 	config.InitEnvConfigs()
-	// Init database source name
-	data.InitDSN()
 
 	app := fiber.New(fiber.Config{
 		//ReadTimeout:   time.Second * 15,

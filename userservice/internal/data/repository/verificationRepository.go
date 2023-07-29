@@ -9,7 +9,7 @@ import (
 // InsertVerificationCode is a function that inserts a verification code into the database
 func InsertVerificationCode(verification entity.Verification) (uint64, error) {
 
-	db := data.Init()
+	db := data.InitDB()
 	defer data.Close(db)
 
 	result := db.Create(&verification)
@@ -25,7 +25,7 @@ func InsertVerificationCode(verification entity.Verification) (uint64, error) {
 // GetVerificationCodeWithUserId is a function that gets a verification code with a user id
 func GetVerificationCodeWithUserId(userId uint64) (entity.Verification, error) {
 
-	db := data.Init()
+	db := data.InitDB()
 	defer data.Close(db)
 
 	var verification entity.Verification
@@ -41,7 +41,7 @@ func GetVerificationCodeWithUserId(userId uint64) (entity.Verification, error) {
 // DeleteVerificationWithId is a function that deletes a verification code with an id
 func DeleteVerificationWithId(id uint64) error {
 
-	db := data.Init()
+	db := data.InitDB()
 	defer data.Close(db)
 
 	result := db.Where("id = ?", id).Delete(&entity.Verification{})
@@ -55,7 +55,7 @@ func DeleteVerificationWithId(id uint64) error {
 // DeleteVerificationWithUserId is a function that deletes a verification code with a user id
 func DeleteVerificationWithUserId(userId uint64) error {
 
-	db := data.Init()
+	db := data.InitDB()
 	defer data.Close(db)
 
 	result := db.Where("user_id = ?", userId).Delete(&entity.Verification{})
