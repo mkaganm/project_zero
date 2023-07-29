@@ -3,7 +3,6 @@ package mailer
 import (
 	"bytes"
 	"encoding/json"
-	"io"
 	"log"
 	"net/http"
 	"userservice/internal/config"
@@ -18,7 +17,7 @@ type SendMailRequest struct {
 }
 
 // SendMail is a function that sends an email
-func SendMail(request SendMailRequest) error {
+func SendMail(request SendMailRequest) {
 
 	// Marshal request
 	url := config.EnvConfigs.MailerUrl
@@ -35,19 +34,9 @@ func SendMail(request SendMailRequest) error {
 	// Send request
 	client := &http.Client{}
 	resp, err := client.Do(req)
+	_ = resp.Body.Close() // close body when send request we don't need to read the response
 	utils.LogErr("Error while sending request: ", err)
 
-	// Close request body
-	defer func(Body io.ReadCloser) {
-		err := Body.Close()
-		if err != nil {
-			utils.LogErr("Error while closing request body: ", err)
-			return
-		}
-	}(resp.Body)
-
 	log.Default().Println("Email sent successfully!")
-
-	return nil
 
 }
