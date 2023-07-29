@@ -4,7 +4,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"loggerservice/internal/api"
 	"loggerservice/internal/config"
-	"loggerservice/internal/data/mongo"
 	"loggerservice/internal/utils"
 )
 
@@ -12,8 +11,6 @@ func main() {
 
 	// Initialize environment variables
 	config.InitEnvConfigs()
-	// Initialize database source name
-	mongo.InitDSN()
 
 	app := fiber.New(fiber.Config{
 		//ReadTimeout:   time.Second * 15,
