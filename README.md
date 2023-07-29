@@ -58,3 +58,4 @@ make run
 - [POST] /api/v1/logger/mongoLog
 - [GET] /api/v1/logger/log
 - [POST] /api/v1/logger/elasticLog
+
