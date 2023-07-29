@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "28a5d0a5-11cd-4763-a77c-7ef4ae11830c",
+		"name": "Logger Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20762252",
+		"_collection_link": "https://winter-crescent-909780.postman.co/workspace/PROJECT_ZERO~a8b3bea9-8b17-4671-8455-68b46fdbbe7c/collection/20762252-28a5d0a5-11cd-4763-a77c-7ef4ae11830c?action=share&creator=20762252&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "SUCCESS LOG",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"collection\": \"userservice\",\n    \"source\": \"/login\",\n    \"request\": \"fdlmfdmdfmldflfdlmfdlm\",\n    \"request_header\": \"mdfödmfmdfkfdkfdkmdf\",\n    \"response\": \"döflfdölfdömfdkmkdfkfmdjfjfjfg\",\n    \"response_header\": \"fdöfdlöölfdölfdfdkdfdfkdffjdn\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3003/api/v1/logger/mongoLog",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"v1",
+						"logger",
+						"mongoLog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ELASTIC LOG",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"index\": \"userservice\",\n    \"data\": {\n        \"denenme\": \"denemeeemem\",\n        \"field\": \"field\",\n        \"king_cobra\": 31,\n        \"pi\": 3.14\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3003/api/v1/logger/elasticLog",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"v1",
+						"logger",
+						"elasticLog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET LOG",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"64a7ca966e0fe788745d2e87\",\n    \"collection\": \"userservice\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3003/api/v1/logger/log",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"v1",
+						"logger",
+						"log"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,45 @@
+{
+	"info": {
+		"_postman_id": "9482a968-b740-45ef-b459-dbea6c268525",
+		"name": "Mailer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20762252",
+		"_collection_link": "https://winter-crescent-909780.postman.co/workspace/PROJECT_ZERO~a8b3bea9-8b17-4671-8455-68b46fdbbe7c/collection/20762252-9482a968-b740-45ef-b459-dbea6c268525?action=share&creator=20762252&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "SEND MAIL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"to\": [\n        \"mustafameric1616@gmail.com\"\n        ],\n    \"subject\": \"denememememe\",\n    \"body\": \"denenenenenne\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3002/api/v1/mailer/send-mail",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3002",
+					"path": [
+						"api",
+						"v1",
+						"mailer",
+						"send-mail"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
