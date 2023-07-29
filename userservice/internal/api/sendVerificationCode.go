@@ -4,9 +4,7 @@ import (
 	"encoding/json"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"userservice/internal/clients/logger"
 	"userservice/internal/data/repository"
-	"userservice/internal/utils"
 )
 
 type SendVerificationRequest struct {
@@ -28,12 +26,6 @@ func SendVerificationCode(c *fiber.Ctx) error {
 			ErrorMessage: "invalid request body",
 		}
 
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
-
 		return c.Status(fiber.StatusBadRequest).JSON(resp)
 	}
 
@@ -47,12 +39,6 @@ func SendVerificationCode(c *fiber.Ctx) error {
 			ErrorMessage: "invalid request body",
 		}
 
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
-
 		return c.Status(fiber.StatusBadRequest).JSON(resp)
 	}
 
@@ -65,12 +51,6 @@ func SendVerificationCode(c *fiber.Ctx) error {
 			ErrorMessage: "user not found",
 		}
 
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
-
 		return c.Status(fiber.StatusNotFound).JSON(resp)
 	}
 
@@ -82,12 +62,6 @@ func SendVerificationCode(c *fiber.Ctx) error {
 			Error:        err,
 			ErrorMessage: "error while sending verification code",
 		}
-
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
 
 		return c.Status(fiber.StatusInternalServerError).JSON(resp)
 	}
@@ -110,12 +84,6 @@ func SendVerificationCode(c *fiber.Ctx) error {
 		UpdatedAt:         user.UpdatedAt,
 		CreatedAt:         user.CreatedAt,
 	}
-
-	logger.SendLog(logger.Log{
-		Source:   utils.CurrentTrace(),
-		Request:  req,
-		Response: resp,
-	})
 
 	return c.Status(fiber.StatusOK).JSON(resp)
 }

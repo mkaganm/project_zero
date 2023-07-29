@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"io"
 	"log"
+	"mailerservice/internal/config"
+	"mailerservice/internal/utils"
 	"net/http"
-	"userservice/internal/config"
-	"userservice/internal/utils"
 )
 
 type Log struct {
@@ -26,7 +26,7 @@ type Log struct {
 func SendLog(successLog Log) {
 
 	url := config.EnvConfigs.LoggerMongoUrl
-	successLog.Collection = "userservice"
+	successLog.Collection = "mailerservice"
 
 	data, err := json.Marshal(successLog)
 	utils.LogErr("error marshalling log", err)

@@ -5,7 +5,6 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"log"
-	"userservice/internal/clients/logger"
 	"userservice/internal/data/entity"
 	"userservice/internal/data/repository"
 	"userservice/internal/utils"
@@ -35,12 +34,6 @@ func Register(c *fiber.Ctx) error {
 			ErrorMessage: "invalid request body",
 		}
 
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
-
 		return c.Status(fiber.StatusBadRequest).JSON(resp)
 	}
 
@@ -54,12 +47,6 @@ func Register(c *fiber.Ctx) error {
 			Error:        err,
 			ErrorMessage: "invalid request body",
 		}
-
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
 
 		return c.Status(fiber.StatusBadRequest).JSON(resp)
 	}
@@ -84,12 +71,6 @@ func Register(c *fiber.Ctx) error {
 			ErrorMessage: "error while inserting user",
 		}
 
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
-
 		return c.Status(fiber.StatusInternalServerError).JSON(resp)
 	}
 
@@ -104,12 +85,6 @@ func Register(c *fiber.Ctx) error {
 			Error:        err,
 			ErrorMessage: "error while sending verification code",
 		}
-
-		logger.SendLog(logger.Log{
-			Source:   utils.CurrentTrace(),
-			Request:  req,
-			Response: resp,
-		})
 
 		return c.Status(fiber.StatusInternalServerError).JSON(resp)
 	}
@@ -133,12 +108,6 @@ func Register(c *fiber.Ctx) error {
 		Data:   make(map[string]interface{}),
 	}
 	resp.Data["user"] = respUser
-
-	logger.SendLog(logger.Log{
-		Source:   utils.CurrentTrace(),
-		Request:  req,
-		Response: resp,
-	})
 
 	return c.Status(fiber.StatusOK).JSON(resp)
 }

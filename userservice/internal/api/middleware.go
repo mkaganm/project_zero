@@ -2,8 +2,8 @@ package api
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"mailerservice/internal/clients/logger"
 	"time"
+	"userservice/internal/clients/logger"
 )
 
 // LoggingMiddleware is a middleware that logs all requests

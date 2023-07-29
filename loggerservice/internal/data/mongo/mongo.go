@@ -17,10 +17,13 @@ var DSN *string
 type LogMongo struct {
 	ID             primitive.ObjectID `bson:"_id,omitempty"`
 	Source         string             `bson:"source"`
+	Method         string             `bson:"method"`
 	Request        interface{}        `bson:"request"`
 	RequestHeader  interface{}        `bson:"requestHeader"`
 	Response       interface{}        `bson:"response"`
 	ResponseHeader interface{}        `bson:"responseHeader"`
+	Duration       string             `bson:"duration"`
+	Status         int                `bson:"status"`
 	Timestamp      time.Time          `bson:"timestamp"`
 }
 

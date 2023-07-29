@@ -9,6 +9,7 @@ func RegisterRoutes(app *fiber.App) {
 
 	routes := app.Group("/api/v1/user")
 
+	routes.Use(LoggingMiddleware)
 	routes.Post("/register", Register)
 	routes.Post("/login", Login)
 	routes.Patch("/change-password", ChancePassword)

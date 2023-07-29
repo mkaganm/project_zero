@@ -8,3 +8,10 @@ func FatalErr(msg string, err error) {
 		log.Fatal(msg, err)
 	}
 }
+
+// LogErr is a function that logs an error
+func LogErr(msg string, err error) {
+	if err != nil {
+		log.Default().Println(msg, err)
+	}
+}
