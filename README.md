@@ -8,11 +8,22 @@
 ## OTHER PORTS
 - 5432 postgres
 - 5050 pgadmin
-- 8080 jenkins
 - 27017 mongo
 - 8081 mongo-express
 - 9200 elasticsearch
 - 5601 kibana
 
-# Micoroservice Project
+
+![img.png](img.png)
+
+
+### BUILD
+```bash
+make build
+```
+
+### RUN
+```bash
+make run
+```
 
