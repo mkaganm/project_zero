@@ -9,8 +9,11 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+    networks:
+      - network
     volumes:
       - local_pgdata:/var/lib/postgresql/data
+
 
   pgadmin:
     image: dpage/pgadmin4
@@ -25,8 +28,11 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_LISTEN_ADDRESS: 0.0.0.0
       PGADMIN_LISTEN_PORT: 5050
+    networks:
+      - network
     volumes:
       - pgadmin-data:/var/lib/pgadmin
+
 
 # FOR JENKINS SETUP
 # docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
@@ -53,10 +59,12 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
-    volumes:
-      - mongo-data:/data/db
     ports:
       - "27017:27017"
+    networks:
+      - network
+    volumes:
+      - mongo-data:/data/db
 
   mongo-express:
     image: mongo-express
@@ -72,6 +80,8 @@ services:
       ME_CONFIG_BASICAUTH_PASSWORD: admin
     ports:
       - "8081:8081"
+    networks:
+      - network
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
@@ -82,7 +92,7 @@ services:
     ports:
       - "9200:9200"
     networks:
-      - elk-network
+      - network
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
 
@@ -94,7 +104,7 @@ services:
     environment:
       ELASTICSEARCH_URL: http://elasticsearch:9200
     networks:
-      - elk-network
+      - network
 
   loggerservice:
     build:
@@ -104,6 +114,8 @@ services:
     restart: always
     ports:
       - "3003:3003"
+    networks:
+      - network
 
   userservice:
     build:
@@ -113,6 +125,8 @@ services:
     restart: always
     ports:
       - "3001:3001"
+    networks:
+      - network
 
   mailerservice:
     build:
@@ -122,6 +136,8 @@ services:
     restart: always
     ports:
       - "3002:3002"
+    networks:
+      - network
 
   cronitor:
     build:
@@ -129,10 +145,12 @@ services:
       dockerfile: cronitor.dockerfile
     container_name: cronitor
     restart: always
+    networks:
+      - network
 
 
 networks:
-    elk-network:
+    network:
         driver: bridge
 
 volumes:
