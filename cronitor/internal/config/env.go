@@ -22,6 +22,11 @@ type envConfigs struct {
 	PostgresPass    string `mapstructure:"POSTGRES_PASS"`
 	PostgresDb      string `mapstructure:"POSTGRES_DB"`
 	PostgresSSLMode string `mapstructure:"POSTGRES_SSL_MODE"`
+	MongoHost       string `mapstructure:"MONGO_HOST"`
+	MongoPort       string `mapstructure:"MONGO_PORT"`
+	MongoUser       string `mapstructure:"MONGO_USER"`
+	MongoPass       string `mapstructure:"MONGO_PASS"`
+	MongoDb         string `mapstructure:"MONGO_DB"`
 }
 
 // loadEnvVariables loads all environment variables from the userservice.env file

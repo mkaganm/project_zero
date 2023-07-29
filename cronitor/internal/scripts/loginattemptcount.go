@@ -9,8 +9,8 @@ import (
 
 // ResetLoginAttemptCounts is a function that resets login attempt counts
 func ResetLoginAttemptCounts() {
-	db := data.Init()
-	defer data.Close(db)
+	db := data.InitPostgresDB()
+	defer data.ClosePostgresDB(db)
 
 	// Before two hours
 	twoHoursAgo := time.Now().Add(-2 * time.Hour)

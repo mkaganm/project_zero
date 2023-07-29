@@ -8,8 +8,8 @@ import (
 
 // DeleteExpiredVerifications is a function that deletes expired verifications
 func DeleteExpiredVerifications() {
-	db := data.Init()
-	defer data.Close(db)
+	db := data.InitPostgresDB()
+	defer data.ClosePostgresDB(db)
 
 	// Before two hours
 	expirationTime := time.Now().Add(-2 * time.Hour)

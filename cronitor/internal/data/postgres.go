@@ -9,6 +9,15 @@ import (
 	"log"
 )
 
+// PostgresDSN is a pointer to a string that holds the data source name
+var PostgresDSN *string
+
+// init is a function that initializes the data source name
+func init() {
+	dsn := createDSN()
+	PostgresDSN = &dsn
+}
+
 // createDSN is a function that creates a data source name
 func createDSN() string {
 
@@ -23,10 +32,10 @@ func createDSN() string {
 	return dsn
 }
 
-// Init is a function that initializes the database
-func Init() *gorm.DB {
+// InitPostgresDB is a function that initializes the database
+func InitPostgresDB() *gorm.DB {
 
-	dsn := createDSN()
+	dsn := *PostgresDSN
 
 	log.Default().Println("Connecting to database...")
 
@@ -38,8 +47,8 @@ func Init() *gorm.DB {
 	return db
 }
 
-// Close is a function that closes the database connection
-func Close(db *gorm.DB) {
+// ClosePostgresDB is a function that closes the database connection
+func ClosePostgresDB(db *gorm.DB) {
 
 	log.Default().Println("Closing database connection...")
 
