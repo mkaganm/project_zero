@@ -60,6 +60,6 @@ func SendMailCode(user entity.User) (err error) {
 		Body:    "Your verification code is: " + code + "\n\n PROJECT_ZERO",
 	}
 
-	err = mailer.SendMail(mailReq)
+	mailer.SendMail(mailReq)
 	return err
 }

@@ -9,11 +9,12 @@ import (
 	"userservice/internal/utils"
 )
 
-var DSN *string
+var PostgresDSN *string
 
-func init() {
+// InitPostgresDSN is a function that initializes the data source name
+func InitPostgresDSN() {
 	dsn := createDSN()
-	DSN = &dsn
+	PostgresDSN = &dsn
 }
 
 // createDSN is a function that creates a data source name
@@ -35,7 +36,7 @@ func InitDB() *gorm.DB {
 
 	log.Default().Println("Connecting to database...")
 
-	db, err := gorm.Open(postgres.Open(*DSN), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(*PostgresDSN), &gorm.Config{})
 	utils.FatalErr("Error while connecting to database", err)
 
 	log.Default().Println("Connected to database.")
