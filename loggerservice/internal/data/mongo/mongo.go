@@ -28,7 +28,7 @@ type LogMongo struct {
 }
 
 // InitMongoDSN is a function that initializes the data source name
-func init() {
+func InitMongoDSN() {
 	dsn := fmt.Sprintf("mongodb://%s:%s@%s:%s",
 		config.EnvConfigs.MongoUser,
 		config.EnvConfigs.MongoPass,
