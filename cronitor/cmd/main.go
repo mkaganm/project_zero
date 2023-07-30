@@ -26,7 +26,7 @@ func main() {
 	_, err = c.AddFunc("*/15 * * * *", scripts.DeleteExpiredVerifications)
 	utils.FatalErr("Error while adding cron job", err)
 
-	_, err = c.AddFunc("* * * * *", scripts.CleanMongoLogs)
+	_, err = c.AddFunc("0 0 * * *", scripts.CleanMongoLogs)
 
 	c.Start()
 

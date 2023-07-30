@@ -18,7 +18,7 @@ func CleanMongoLogs() {
 	db := client.Database(config.EnvConfigs.MongoDb)
 
 	// Before 30 days
-	oneMonthAgo := time.Now().Add(-0 * 1 * time.Hour)
+	oneMonthAgo := time.Now().Add(-30 * 24 * time.Hour)
 
 	// Delete logs from MongoDB
 	collection := db.Collection("userservice")
