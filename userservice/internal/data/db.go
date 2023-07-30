@@ -11,6 +11,7 @@ import (
 
 var DSN *string
 
+// init is a function that initializes the data source name
 func init() {
 	dsn := createDSN()
 	DSN = &dsn
