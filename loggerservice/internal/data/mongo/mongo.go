@@ -27,7 +27,7 @@ type LogMongo struct {
 	Timestamp      time.Time          `bson:"timestamp"`
 }
 
-// init is a function that initializes the data source name
+// InitMongoDSN is a function that initializes the data source name
 func init() {
 	dsn := fmt.Sprintf("mongodb://%s:%s@%s:%s",
 		config.EnvConfigs.MongoUser,
