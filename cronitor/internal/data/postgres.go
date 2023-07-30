@@ -12,8 +12,8 @@ import (
 // PostgresDSN is a pointer to a string that holds the data source name
 var PostgresDSN *string
 
-// init is a function that initializes the data source name
-func init() {
+// InitPostgresDSN is a function that initializes the data source name
+func InitPostgresDSN() {
 	dsn := createDSN()
 	PostgresDSN = &dsn
 }
