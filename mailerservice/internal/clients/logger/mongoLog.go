@@ -21,8 +21,8 @@ type Log struct {
 	Status         int         `json:"status"`
 }
 
-// SendLog sends log to mongo
-func SendLog(successLog Log) {
+// SendMongoLog sends log to mongo
+func SendMongoLog(successLog Log) {
 
 	url := config.EnvConfigs.LoggerMongoUrl
 	successLog.Collection = "mailerservice"
