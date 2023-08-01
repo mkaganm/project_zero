@@ -2,9 +2,11 @@ package mail
 
 import (
 	"log"
+	"mailerservice/internal/clients/logger"
 	"mailerservice/internal/config"
 	"net/smtp"
 	"strconv"
+	"time"
 )
 
 type Mail struct {
@@ -15,6 +17,12 @@ type Mail struct {
 }
 
 func SendMail(mail Mail) error {
+
+	esLog := make(map[string]interface{})
+	esLog["status"] = "success"
+	esLog["tag"] = "[MailSent]"
+	esLog["message"] = "Mail sent!"
+	esLog["timestamp"] = time.Now()
 
 	smtpHost := config.EnvConfigs.SmtpHost
 	smtpPort := config.EnvConfigs.SmtpPort
@@ -27,10 +35,13 @@ func SendMail(mail Mail) error {
 	err := smtp.SendMail(smtpHost+":"+strconv.Itoa(smtpPort), auth, mail.From, mail.To, message)
 	if err != nil {
 		log.Default().Println("Error while sending email: " + err.Error())
+		esLog["error"] = err.Error()
+		esLog["status"] = "failed"
 		return err
 	}
 
 	log.Default().Println("Email sent successfully!")
+	logger.SendElasticLog(esLog)
 	return nil
 
 }

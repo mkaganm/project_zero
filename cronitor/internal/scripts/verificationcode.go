@@ -12,8 +12,8 @@ func DeleteExpiredVerifications() {
 
 	esLog := make(map[string]interface{})
 	esLog["status"] = "success"
-	esLog["tag"] = "[ResetLoginAttemptCounts]"
-	esLog["message"] = "Reset login attempt counts!"
+	esLog["tag"] = "[ExpiredVerificationsDeleted]"
+	esLog["message"] = "Expired verifications deleted!"
 	esLog["timestamp"] = time.Now()
 
 	db := data.InitPostgresDB()

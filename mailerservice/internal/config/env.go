@@ -23,6 +23,7 @@ type envConfigs struct {
 	MailerSenderAddress  string `mapstructure:"MAILER_SENDER_ADDRESS"`
 	MailerSenderPassword string `mapstructure:"MAILER_SENDER_PASSWORD"`
 	LoggerMongoUrl       string `mapstructure:"LOGGER_MONGO_URL"`
+	LoggerElasticUrl     string `mapstructure:"LOGGER_ELASTIC_URL"`
 }
 
 // loadEnvVariables loads all environment variables from the userservice.env file
