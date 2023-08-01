@@ -16,17 +16,18 @@ func InitEnvConfigs() {
 
 // envConfigs is a struct that contains all environment variables
 type envConfigs struct {
-	PostgresHost    string `mapstructure:"POSTGRES_HOST"`
-	PostgresPort    string `mapstructure:"POSTGRES_PORT"`
-	PostgresUser    string `mapstructure:"POSTGRES_USER"`
-	PostgresPass    string `mapstructure:"POSTGRES_PASS"`
-	PostgresDb      string `mapstructure:"POSTGRES_DB"`
-	PostgresSSLMode string `mapstructure:"POSTGRES_SSL_MODE"`
-	MongoHost       string `mapstructure:"MONGO_HOST"`
-	MongoPort       string `mapstructure:"MONGO_PORT"`
-	MongoUser       string `mapstructure:"MONGO_USER"`
-	MongoPass       string `mapstructure:"MONGO_PASS"`
-	MongoDb         string `mapstructure:"MONGO_DB"`
+	PostgresHost     string `mapstructure:"POSTGRES_HOST"`
+	PostgresPort     string `mapstructure:"POSTGRES_PORT"`
+	PostgresUser     string `mapstructure:"POSTGRES_USER"`
+	PostgresPass     string `mapstructure:"POSTGRES_PASS"`
+	PostgresDb       string `mapstructure:"POSTGRES_DB"`
+	PostgresSSLMode  string `mapstructure:"POSTGRES_SSL_MODE"`
+	MongoHost        string `mapstructure:"MONGO_HOST"`
+	MongoPort        string `mapstructure:"MONGO_PORT"`
+	MongoUser        string `mapstructure:"MONGO_USER"`
+	MongoPass        string `mapstructure:"MONGO_PASS"`
+	MongoDb          string `mapstructure:"MONGO_DB"`
+	LoggerElasticUrl string `mapstructure:"LOGGER_ELASTIC_URL"`
 }
 
 // loadEnvVariables loads all environment variables from the userservice.env file
