@@ -2,6 +2,7 @@ package scripts
 
 import (
 	"context"
+	"cronitor/internal/clients/elastic"
 	"cronitor/internal/config"
 	"cronitor/internal/data"
 	"go.mongodb.org/mongo-driver/bson"
@@ -11,6 +12,12 @@ import (
 
 // CleanMongoLogs is a function that cleans mongo logs older than 30 days
 func CleanMongoLogs() {
+
+	esLog := make(map[string]interface{})
+	esLog["status"] = "success"
+	esLog["tag"] = "[CleanMongoLogs]"
+	esLog["message"] = "Mongo logs cleaned !"
+	esLog["timestamp"] = time.Now()
 
 	client := data.InitMongoDB()
 	defer data.CloseMongoDB(client)
@@ -26,6 +33,8 @@ func CleanMongoLogs() {
 	_, err := collection.DeleteMany(context.Background(), filter)
 	if err != nil {
 		log.Default().Println("Error while deleting logs from MongoDB")
+		esLog["error"] = err.Error()
+		esLog["status"] = "failed"
 	}
 
 	// Delete logs from MongoDB
@@ -34,6 +43,11 @@ func CleanMongoLogs() {
 	_, err = collection.DeleteMany(context.Background(), filter)
 	if err != nil {
 		log.Default().Println("Error while deleting logs from MongoDB")
+		esLog["error"] = err.Error()
+		esLog["status"] = "failed"
 	}
+
+	// send log to elasticsearch
+	elastic.SendLog(esLog)
 
 }

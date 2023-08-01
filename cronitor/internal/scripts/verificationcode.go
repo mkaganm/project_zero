@@ -1,6 +1,7 @@
 package scripts
 
 import (
+	"cronitor/internal/clients/elastic"
 	"cronitor/internal/data"
 	"log"
 	"time"
@@ -8,6 +9,13 @@ import (
 
 // DeleteExpiredVerifications is a function that deletes expired verifications
 func DeleteExpiredVerifications() {
+
+	esLog := make(map[string]interface{})
+	esLog["status"] = "success"
+	esLog["tag"] = "[ResetLoginAttemptCounts]"
+	esLog["message"] = "Reset login attempt counts!"
+	esLog["timestamp"] = time.Now()
+
 	db := data.InitPostgresDB()
 	defer data.ClosePostgresDB(db)
 
@@ -17,8 +25,11 @@ func DeleteExpiredVerifications() {
 	result := db.Exec("DELETE FROM verifications WHERE created_at < ?", expirationTime)
 	if result.Error != nil {
 		log.Default().Println("Error deleting expired verifications:", result.Error)
+		esLog["error"] = result.Error.Error()
+		esLog["status"] = "failed"
 		return
 	}
 
 	log.Default().Println("Expired verifications deleted.")
+	elastic.SendLog(esLog)
 }
