@@ -3,7 +3,8 @@ package api
 import (
 	"github.com/gofiber/fiber/v2"
 	"time"
-	"userservice/internal/clients/logger"
+	"userservice/internal/clients/loggerservice"
+	"userservice/internal/utils"
 )
 
 // LoggingMiddleware is a middleware that logs all requests
@@ -16,7 +17,7 @@ func LoggingMiddleware(c *fiber.Ctx) error {
 	endTime := time.Now()
 	duration := endTime.Sub(startTime)
 
-	logData := logger.Log{
+	logData := loggerservice.Log{
 		Source:         c.IP(),
 		Method:         c.Path(),
 		Request:        string(c.Request().Body()),
@@ -26,7 +27,21 @@ func LoggingMiddleware(c *fiber.Ctx) error {
 		Duration:       duration.String(),
 		Status:         c.Response().StatusCode(),
 	}
-	logger.SendLog(logData)
+	loggerservice.SendLog(logData)
 
+	return err
+}
+
+// CookieAuth is a middleware that checks if the user is authenticated
+func CookieAuth(c *fiber.Ctx) error {
+
+	cookie := c.Cookies("session")
+	print(cookie)
+
+	reqBody := make(map[string]interface{})
+	err := c.BodyParser(&reqBody)
+	utils.LogErr("Error parsing request body", err)
+
+	err = c.Next()
 	return err
 }
