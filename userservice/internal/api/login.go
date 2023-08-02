@@ -5,6 +5,7 @@ import (
 	"errors"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
+	"time"
 	"userservice/internal/data/repository"
 	"userservice/internal/utils"
 )
@@ -134,5 +135,22 @@ func Login(c *fiber.Ctx) error {
 		UpdatedAt:         user.UpdatedAt,
 	}
 
+	// Generate token and give it to user as cookie for authentication
+	token, err := utils.GenerateToken(user.Password)
+	cookieData := CookieData{
+		UserId:       user.Id,
+		SessionToken: token,
+	}
+	// Convert cookie data to json
+	cookieJson, err := json.Marshal(cookieData)
+	// Create cookie
+	cookie := fiber.Cookie{
+		Name:     "session",
+		Value:    string(cookieJson),
+		Expires:  time.Now().Add(time.Hour * 24),
+		HTTPOnly: true,
+	}
+
+	c.Cookie(&cookie)
 	return c.Status(fiber.StatusOK).JSON(resp)
 }
