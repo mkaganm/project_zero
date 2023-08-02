@@ -12,6 +12,10 @@
 - 8081 mongo-express
 - 9200 elasticsearch
 - 5601 kibana
+- 6379 redis
+- 8082 redis-commander
+- 5672 rabbitmq
+- 15672 rabbitmq-management
 
 
 ![img.png](img.png)
