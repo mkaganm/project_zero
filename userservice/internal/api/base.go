@@ -35,6 +35,11 @@ type UserResponse struct {
 	UpdatedAt         time.Time `json:"updated_at"`
 }
 
+type CookieData struct {
+	UserId       uint64 `json:"user_id"`
+	SessionToken string `json:"session_token"`
+}
+
 // SendMailCode sends a verification code to the given email address
 func SendMailCode(user entity.User) (err error) {
 
