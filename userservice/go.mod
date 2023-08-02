@@ -5,8 +5,11 @@ go 1.20
 require (
 	github.com/go-playground/validator/v10 v10.14.1
 	github.com/gofiber/fiber/v2 v2.47.0
+	github.com/golang-jwt/jwt/v5 v5.0.0
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/spf13/viper v1.16.0
+	go.uber.org/zap v1.21.0
+	golang.org/x/crypto v0.9.0
 	gorm.io/driver/postgres v1.5.2
 	gorm.io/gorm v1.25.1
 )
@@ -44,7 +47,8 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.47.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	golang.org/x/crypto v0.9.0 // indirect
+	go.uber.org/atomic v1.9.0 // indirect
+	go.uber.org/multierr v1.8.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/sys v0.9.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
