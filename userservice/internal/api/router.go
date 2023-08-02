@@ -12,7 +12,7 @@ func RegisterRoutes(app *fiber.App) {
 	routes.Use(LoggingMiddleware)
 	routes.Post("/register", Register)
 	routes.Post("/login", Login)
-	routes.Patch("/change-password", ChancePassword)
+	routes.Patch("/change-password", CookieAuth, ChancePassword) // CookieAuth is a auth middleware
 	routes.Post("/confirm-register", ConfirmRegister)
 	routes.Post("/send-verification-code", SendVerificationCode)
 	routes.Post("/forgot-password", ForgotPassword)
