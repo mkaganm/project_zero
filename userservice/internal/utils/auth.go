@@ -2,10 +2,29 @@ package utils
 
 import (
 	"fmt"
+	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
 	"math/rand"
 	"time"
 )
+
+var JWT *jwt.Token
+
+func init() {
+	initJWT()
+}
+
+func initJWT() {
+	JWT = jwt.New(jwt.SigningMethodHS256)
+	claims := JWT.Claims.(jwt.MapClaims)
+	claims["exp"] = time.Now().Add(time.Hour * 24).Unix()
+}
+
+// GenerateToken generates a token
+func GenerateToken(secret string) (string, error) {
+	token, err := JWT.SignedString([]byte(secret))
+	return token, err
+}
 
 // HashPassword hashes a password
 func HashPassword(password string) (string, error) {
