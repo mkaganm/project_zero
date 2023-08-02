@@ -10,6 +10,7 @@ import (
 )
 
 type changePasswordRequest struct {
+	UserId       uint64 `json:"user_id" validate:"required"`
 	Email        string `json:"email" validate:"required,email"`
 	Password     string `json:"password" validate:"required"`
 	NewPassword1 string `json:"new_password_1" validate:"required,CheckPassword"`
@@ -62,7 +63,7 @@ func ChancePassword(c *fiber.Ctx) error {
 
 	}
 
-	user, err := repository.GetUserWithEmail(req.Email)
+	user, err := repository.GetUserWithId(req.UserId)
 	if err != nil {
 
 		resp := ErrorResponse{
