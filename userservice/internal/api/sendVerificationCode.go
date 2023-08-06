@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"userservice/internal/data/repository"
+	"userservice/internal/data/postgreDB"
 )
 
 type SendVerificationRequest struct {
@@ -42,7 +42,7 @@ func SendVerificationCode(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(resp)
 	}
 
-	user, err := repository.GetUserWithEmail(req.Email)
+	user, err := postgreDB.GetUserWithEmail(req.Email)
 	if err != nil {
 
 		resp := ErrorResponse{
