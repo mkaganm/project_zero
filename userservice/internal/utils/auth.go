@@ -6,6 +6,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"math/rand"
 	"time"
+	"userservice/internal/config"
 )
 
 var JWT *jwt.Token
@@ -24,6 +25,20 @@ func initJWT() {
 func GenerateToken(secret string) (string, error) {
 	token, err := JWT.SignedString([]byte(secret))
 	return token, err
+}
+
+// CheckToken checks if a token is valid
+func CheckToken(token string) bool {
+
+	_, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
+		return []byte(config.EnvConfigs.Secret), nil
+	})
+
+	if err != nil {
+		return false
+	}
+
+	return true
 }
 
 // HashPassword hashes a password
