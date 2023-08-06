@@ -9,8 +9,8 @@ import (
 // EnvConfigs is a global variable that contains all environment variables
 var EnvConfigs *envConfigs
 
-// InitEnvConfigs initializes the EnvConfigs variable
-func InitEnvConfigs() {
+// init initializes the EnvConfigs variable
+func init() {
 	EnvConfigs = loadEnvVariables()
 }
 

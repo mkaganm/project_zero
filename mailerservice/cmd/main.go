@@ -8,8 +8,6 @@ import (
 )
 
 func main() {
-	// Init env configs
-	config.InitEnvConfigs()
 
 	app := fiber.New(fiber.Config{
 		//ReadTimeout:   time.Second * 15,
