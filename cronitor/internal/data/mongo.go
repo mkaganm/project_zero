@@ -12,8 +12,8 @@ import (
 
 var MongoDSN *string
 
-// InitMongoDSN is a function that initializes the data source name
-func InitMongoDSN() {
+// init is a function that initializes the data source name
+func init() {
 	dsn := fmt.Sprintf("mongodb://%s:%s@%s:%s",
 		config.EnvConfigs.MongoUser,
 		config.EnvConfigs.MongoPass,
