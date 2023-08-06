@@ -26,7 +26,7 @@ func LoggingMiddleware(c *fiber.Ctx) error {
 		Duration:       duration.String(),
 		Status:         c.Response().StatusCode(),
 	}
-	logger.SendLog(logData)
+	logger.SendMongoLog(logData)
 
 	return err
 }
