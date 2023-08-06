@@ -1,16 +1,14 @@
-package repository
+package postgreDB
 
 import (
 	"log"
-	"userservice/internal/data"
-	"userservice/internal/data/entity"
 )
 
 // InsertVerificationCode is a function that inserts a verification code into the database
-func InsertVerificationCode(verification entity.Verification) (uint64, error) {
+func InsertVerificationCode(verification Verification) (uint64, error) {
 
-	db := data.InitDB()
-	defer data.Close(db)
+	db := InitDB()
+	defer Close(db)
 
 	result := db.Create(&verification)
 	if result.Error != nil {
@@ -23,12 +21,12 @@ func InsertVerificationCode(verification entity.Verification) (uint64, error) {
 }
 
 // GetVerificationCodeWithUserId is a function that gets a verification code with a user id
-func GetVerificationCodeWithUserId(userId uint64) (entity.Verification, error) {
+func GetVerificationCodeWithUserId(userId uint64) (Verification, error) {
 
-	db := data.InitDB()
-	defer data.Close(db)
+	db := InitDB()
+	defer Close(db)
 
-	var verification entity.Verification
+	var verification Verification
 
 	result := db.Where("user_id = ?", userId).First(&verification)
 	if result.Error != nil {
@@ -41,10 +39,10 @@ func GetVerificationCodeWithUserId(userId uint64) (entity.Verification, error) {
 // DeleteVerificationWithId is a function that deletes a verification code with an id
 func DeleteVerificationWithId(id uint64) error {
 
-	db := data.InitDB()
-	defer data.Close(db)
+	db := InitDB()
+	defer Close(db)
 
-	result := db.Where("id = ?", id).Delete(&entity.Verification{})
+	result := db.Where("id = ?", id).Delete(&Verification{})
 	if result.Error != nil {
 		return result.Error
 	}
@@ -55,10 +53,10 @@ func DeleteVerificationWithId(id uint64) error {
 // DeleteVerificationWithUserId is a function that deletes a verification code with a user id
 func DeleteVerificationWithUserId(userId uint64) error {
 
-	db := data.InitDB()
-	defer data.Close(db)
+	db := InitDB()
+	defer Close(db)
 
-	result := db.Where("user_id = ?", userId).Delete(&entity.Verification{})
+	result := db.Where("user_id = ?", userId).Delete(&Verification{})
 	if result.Error != nil {
 		return result.Error
 	}
