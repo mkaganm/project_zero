@@ -5,7 +5,7 @@ import (
 	"errors"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"userservice/internal/data/repository"
+	"userservice/internal/data/postgreDB"
 	"userservice/internal/utils"
 )
 
@@ -45,7 +45,7 @@ func ConfirmRegister(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(resp)
 	}
 
-	ver, err := repository.GetVerificationCodeWithUserId(req.UserId)
+	ver, err := postgreDB.GetVerificationCodeWithUserId(req.UserId)
 	if err != nil {
 
 		resp := ErrorResponse{
@@ -71,7 +71,7 @@ func ConfirmRegister(c *fiber.Ctx) error {
 
 	}
 
-	user, err := repository.GetUserWithId(req.UserId)
+	user, err := postgreDB.GetUserWithId(req.UserId)
 	if err != nil {
 
 		resp := ErrorResponse{
@@ -84,7 +84,7 @@ func ConfirmRegister(c *fiber.Ctx) error {
 	}
 
 	user.IsVerified = true
-	err = repository.UpdateUser(&user)
+	err = postgreDB.UpdateUser(&user)
 	if err != nil {
 
 		resp := ErrorResponse{
@@ -96,7 +96,7 @@ func ConfirmRegister(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(resp)
 	}
 
-	_ = repository.DeleteVerificationWithId(ver.Id)
+	_ = postgreDB.DeleteVerificationWithId(ver.Id)
 
 	resp := Response{
 		Status: "success",

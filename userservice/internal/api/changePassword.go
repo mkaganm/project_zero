@@ -5,7 +5,7 @@ import (
 	"errors"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"userservice/internal/data/repository"
+	"userservice/internal/data/postgreDB"
 	"userservice/internal/utils"
 )
 
@@ -63,7 +63,7 @@ func ChancePassword(c *fiber.Ctx) error {
 
 	}
 
-	user, err := repository.GetUserWithId(req.UserId)
+	user, err := postgreDB.GetUserWithId(req.UserId)
 	if err != nil {
 
 		resp := ErrorResponse{
@@ -117,7 +117,7 @@ func ChancePassword(c *fiber.Ctx) error {
 
 	user.Password, _ = utils.HashPassword(req.NewPassword1)
 
-	err = repository.UpdateUser(&user)
+	err = postgreDB.UpdateUser(&user)
 	if err != nil {
 
 		resp := ErrorResponse{
