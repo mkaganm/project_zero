@@ -3,10 +3,14 @@ package api
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 	"time"
-	"userservice/internal/data/repository"
+	"userservice/internal/config"
+	"userservice/internal/data/postgreDB"
+	"userservice/internal/data/redisDB"
 	"userservice/internal/utils"
 )
 
@@ -47,7 +51,7 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(resp)
 	}
 
-	user, err := repository.GetUserWithEmail(req.Email)
+	user, err := postgreDB.GetUserWithEmail(req.Email)
 	if err != nil {
 
 		resp := ErrorResponse{
@@ -75,7 +79,7 @@ func Login(c *fiber.Ctx) error {
 	isValidPassword := utils.CheckHashPassword(req.Password, user.Password)
 	if !isValidPassword {
 
-		err = repository.IncrementLoginAttemptCount(&user)
+		err = postgreDB.IncrementLoginAttemptCount(&user)
 		utils.LogErr("Error while increment login attempt count", err)
 
 		err = errors.New("invalid password")
@@ -113,7 +117,7 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusUnauthorized).JSON(resp)
 	}
 
-	err = repository.ResetLoginAttemptCount(&user)
+	err = postgreDB.ResetLoginAttemptCount(&user)
 	utils.LogErr("Error while reset login attempt count", err)
 
 	resp := Response{
@@ -136,13 +140,28 @@ func Login(c *fiber.Ctx) error {
 	}
 
 	// Generate token and give it to user as cookie for authentication
-	token, err := utils.GenerateToken(user.Password)
-	cookieData := CookieData{
+	token, _ := utils.GenerateToken(config.EnvConfigs.Secret)
+	cookieData := redisDB.CookieData{
 		UserId:       user.Id,
 		SessionToken: token,
+		Key:          fmt.Sprintf("cookie:%s", uuid.New().String()),
+		Timestamp:    time.Now(),
+	}
+	// Insert cookie data to redis
+	err = redisDB.InsertCookieData(&cookieData)
+	if err != nil {
+		utils.LogErr("Error while inserting cookie data to redis", err)
+
+		resp := ErrorResponse{
+			Status:       "failed",
+			Error:        err,
+			ErrorMessage: "session not created",
+		}
+
+		return c.Status(fiber.StatusInternalServerError).JSON(resp)
 	}
 	// Convert cookie data to json
-	cookieJson, err := json.Marshal(cookieData)
+	cookieJson, _ := json.Marshal(cookieData)
 	// Create cookie
 	cookie := fiber.Cookie{
 		Name:     "session",
