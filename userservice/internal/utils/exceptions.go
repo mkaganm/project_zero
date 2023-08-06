@@ -1,6 +1,9 @@
 package utils
 
-import "log"
+import (
+	"go.uber.org/zap"
+	"log"
+)
 
 // FatalErr is a function that logs a fatal error
 func FatalErr(msg string, err error) {
@@ -9,8 +12,14 @@ func FatalErr(msg string, err error) {
 	}
 }
 
+// LogErr is a function that logs an error
 func LogErr(msg string, err error) {
 	if err != nil {
-		log.Default().Println(msg, err)
+		logger.Error(msg, zap.Error(err))
 	}
+}
+
+// LogInfo is a function that logs an info
+func LogInfo(msg string) {
+	logger.Info(msg)
 }

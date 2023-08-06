@@ -3,12 +3,12 @@ package api
 import (
 	"time"
 	"userservice/internal/clients/mailer"
-	"userservice/internal/data/entity"
-	"userservice/internal/data/repository"
+	"userservice/internal/data/postgreDB"
 	"userservice/internal/utils"
 )
 
 const errMsg = "invalid request body"
+const unAuthMsg = "unauthorized session"
 
 type ErrorResponse struct {
 	Status       string `json:"status"`
@@ -36,20 +36,20 @@ type UserResponse struct {
 }
 
 // SendMailCode sends a verification code to the given email address
-func SendMailCode(user entity.User) (err error) {
+func SendMailCode(user postgreDB.User) (err error) {
 
-	err = repository.DeleteVerificationWithUserId(user.Id)
+	err = postgreDB.DeleteVerificationWithUserId(user.Id)
 	utils.LogErr("delete verification code", err)
 
 	code := utils.GenerateVerificationCode()
 	cadeHash, _ := utils.HashPassword(code)
 
-	verificationTable := entity.Verification{
+	verificationTable := postgreDB.Verification{
 		UserID:               user.Id,
 		VerificationCodeHash: cadeHash,
 	}
 
-	_, err = repository.InsertVerificationCode(verificationTable)
+	_, err = postgreDB.InsertVerificationCode(verificationTable)
 	if err != nil {
 		return err
 	}

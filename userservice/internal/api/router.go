@@ -9,10 +9,10 @@ func RegisterRoutes(app *fiber.App) {
 
 	routes := app.Group("/api/v1/user")
 
-	routes.Use(LoggingMiddleware)
+	routes.Use(LoggingMiddleware) // LoggingMiddleware is a middleware for logging
 	routes.Post("/register", Register)
 	routes.Post("/login", Login)
-	routes.Patch("/change-password", ChancePassword)
+	routes.Patch("/change-password", CookieAuth, ChancePassword) // CookieAuth is an auth middleware
 	routes.Post("/confirm-register", ConfirmRegister)
 	routes.Post("/send-verification-code", SendVerificationCode)
 	routes.Post("/forgot-password", ForgotPassword)

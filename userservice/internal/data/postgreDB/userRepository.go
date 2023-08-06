@@ -1,16 +1,14 @@
-package repository
+package postgreDB
 
 import (
 	"log"
-	"userservice/internal/data"
-	"userservice/internal/data/entity"
 )
 
 // InsertUser is a function that inserts a user into the database
-func InsertUser(user entity.User) (uint64, error) {
+func InsertUser(user User) (uint64, error) {
 
-	db := data.InitDB()
-	defer data.Close(db)
+	db := InitDB()
+	defer Close(db)
 
 	result := db.Create(&user)
 	if result.Error != nil {
@@ -23,12 +21,12 @@ func InsertUser(user entity.User) (uint64, error) {
 }
 
 // GetUserWithEmail is a function that returns a user with the given username
-func GetUserWithEmail(email string) (entity.User, error) {
+func GetUserWithEmail(email string) (User, error) {
 
-	db := data.InitDB()
-	defer data.Close(db)
+	db := InitDB()
+	defer Close(db)
 
-	var user entity.User
+	var user User
 
 	result := db.Where("email = ?", email).First(&user)
 	if result.Error != nil {
@@ -39,12 +37,12 @@ func GetUserWithEmail(email string) (entity.User, error) {
 }
 
 // GetUserWithId is a function that returns a user with the given id
-func GetUserWithId(id uint64) (entity.User, error) {
+func GetUserWithId(id uint64) (User, error) {
 
-	db := data.InitDB()
-	defer data.Close(db)
+	db := InitDB()
+	defer Close(db)
 
-	var user entity.User
+	var user User
 
 	result := db.Where("id = ?", id).First(&user)
 	if result.Error != nil {
@@ -55,10 +53,10 @@ func GetUserWithId(id uint64) (entity.User, error) {
 }
 
 // IncrementLoginAttemptCount is a function that increments the login attempt count of a user
-func IncrementLoginAttemptCount(user *entity.User) error {
+func IncrementLoginAttemptCount(user *User) error {
 
-	db := data.InitDB()
-	defer data.Close(db)
+	db := InitDB()
+	defer Close(db)
 
 	user.LoginAttemptCount++
 
@@ -74,10 +72,10 @@ func IncrementLoginAttemptCount(user *entity.User) error {
 }
 
 // ResetLoginAttemptCount is a function that resets the login attempt count of a user
-func ResetLoginAttemptCount(user *entity.User) error {
+func ResetLoginAttemptCount(user *User) error {
 
-	db := data.InitDB()
-	defer data.Close(db)
+	db := InitDB()
+	defer Close(db)
 
 	user.LoginAttemptCount = 0
 
@@ -89,10 +87,10 @@ func ResetLoginAttemptCount(user *entity.User) error {
 }
 
 // UpdateUser is a function that updates a user
-func UpdateUser(user *entity.User) error {
+func UpdateUser(user *User) error {
 
-	db := data.InitDB()
-	defer data.Close(db)
+	db := InitDB()
+	defer Close(db)
 
 	result := db.Save(user)
 	if result.Error != nil {

@@ -5,8 +5,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"log"
-	"userservice/internal/data/entity"
-	"userservice/internal/data/repository"
+	"userservice/internal/data/postgreDB"
 	"userservice/internal/utils"
 )
 
@@ -53,7 +52,7 @@ func Register(c *fiber.Ctx) error {
 
 	pass, _ := utils.HashPassword(req.Password)
 
-	user := entity.User{
+	user := postgreDB.User{
 		Username:    req.Username,
 		Password:    pass,
 		FirstName:   req.FirstName,
@@ -62,7 +61,7 @@ func Register(c *fiber.Ctx) error {
 		PhoneNumber: req.PhoneNumber,
 	}
 
-	userId, err := repository.InsertUser(user)
+	userId, err := postgreDB.InsertUser(user)
 	if err != nil {
 
 		resp := ErrorResponse{

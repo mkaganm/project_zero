@@ -111,6 +111,8 @@ services:
     command: redis-server --protected-mode no
     ports:
       - "6379:6379"
+    volumes:
+      - redis-data:/var/lib/redis/data
     networks:
       - network
 
