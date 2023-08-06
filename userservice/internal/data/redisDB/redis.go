@@ -51,7 +51,7 @@ func InsertCookieData(data *CookieData) error {
 	}
 
 	// Insert data to redis
-	err = rdb.Set(ctx, data.Key, jsonData, 2*time.Minute).Err()
+	err = rdb.Set(ctx, data.Key, jsonData, 24*time.Hour).Err()
 	if err != nil {
 		utils.LogErr("Error while converting cookie data to JSON", err)
 		return err
