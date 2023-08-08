@@ -2,8 +2,8 @@ package api
 
 import (
 	"time"
-	"userservice/internal/clients/mailer"
 	"userservice/internal/data/postgreDB"
+	"userservice/internal/producer"
 	"userservice/internal/utils"
 )
 
@@ -51,15 +51,15 @@ func SendMailCode(user postgreDB.User) (err error) {
 
 	_, err = postgreDB.InsertVerificationCode(verificationTable)
 	if err != nil {
+		utils.LogErr("Error when insert verification code to db.", err)
 		return err
 	}
 
-	mailReq := mailer.SendMailRequest{
+	producer.PublishMailerMessage(producer.MailMessage{
 		To:      []string{user.Email},
 		Subject: "PROJECT_ZERO : Verification Code",
 		Body:    "Your verification code is: " + code + "\n\n PROJECT_ZERO",
-	}
+	})
 
-	mailer.SendMail(mailReq)
 	return err
 }
