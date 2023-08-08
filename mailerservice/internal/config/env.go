@@ -23,6 +23,11 @@ type envConfigs struct {
 	MailerSenderAddress  string `mapstructure:"MAILER_SENDER_ADDRESS"`
 	MailerSenderPassword string `mapstructure:"MAILER_SENDER_PASSWORD"`
 	LoggerMongoUrl       string `mapstructure:"LOGGER_MONGO_URL"`
+	LoggerElasticUrl     string `mapstructure:"LOGGER_ELASTIC_URL"`
+	RabbitMQHost         string `mapstructure:"RABBITMQ_HOST"`
+	RabbitMQPort         string `mapstructure:"RABBITMQ_PORT"`
+	RabbitMQUser         string `mapstructure:"RABBITMQ_USER"`
+	RabbitMQPass         string `mapstructure:"RABBITMQ_PASS"`
 }
 
 // loadEnvVariables loads all environment variables from the userservice.env file

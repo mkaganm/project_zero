@@ -193,8 +193,8 @@ networks:
 volumes:
   local_pgdata:
   pgadmin-data:
-  jenkins_data:
   mongo-data:
   elasticsearch-data:
   redis-data:
   rabbitmq-data:
+#  jenkins_data:

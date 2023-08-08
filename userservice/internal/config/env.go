@@ -28,6 +28,10 @@ type envConfigs struct {
 	LoggerMongoUrl  string `mapstructure:"LOGGER_MONGO_URL"`
 	RedisAddr       string `mapstructure:"REDIS_ADDR"`
 	RedisDB         int    `mapstructure:"REDIS_DB"`
+	RabbitMQHost    string `mapstructure:"RABBITMQ_HOST"`
+	RabbitMQPort    string `mapstructure:"RABBITMQ_PORT"`
+	RabbitMQUser    string `mapstructure:"RABBITMQ_USER"`
+	RabbitMQPass    string `mapstructure:"RABBITMQ_PASS"`
 }
 
 // loadEnvVariables loads all environment variables from the userservice.env file
