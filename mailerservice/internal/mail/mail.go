@@ -14,6 +14,7 @@ type Mail struct {
 	Body    string   `json:"body"`
 }
 
+// SendMail is a function to send email
 func SendMail(mail Mail) error {
 
 	smtpHost := config.EnvConfigs.SmtpHost
