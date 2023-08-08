@@ -7,6 +7,7 @@ require (
 	github.com/gofiber/fiber/v2 v2.47.0
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/spf13/viper v1.16.0
+	github.com/streadway/amqp v1.1.0
 )
 
 require (

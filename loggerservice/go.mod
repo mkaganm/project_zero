@@ -7,6 +7,7 @@ require (
 	github.com/gofiber/fiber/v2 v2.47.0
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/spf13/viper v1.16.0
+	github.com/streadway/amqp v1.1.0
 	go.mongodb.org/mongo-driver v1.12.0
 	go.uber.org/zap v1.21.0
 	golang.org/x/crypto v0.10.0
