@@ -98,6 +98,8 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.10.0
     container_name: kibana
+    depends_on:
+      - elasticsearch
     ports:
       - "5601:5601"
     environment:
@@ -120,6 +122,8 @@ services:
     image: rediscommander/redis-commander:latest
     container_name: redis-commander
     restart: always
+    depends_on:
+      - redis
     environment:
       - REDIS_HOSTS=local:redis:6379
       - HTTP_USER=admin
@@ -170,6 +174,8 @@ services:
       context: ./mailerservice
       dockerfile: mailerservice.dockerfile
     container_name: mailerservice
+    depends_on:
+      - rabbitmq
     restart: always
     ports:
       - "3002:3002"
