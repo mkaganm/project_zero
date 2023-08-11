@@ -3,7 +3,7 @@ package api
 import (
 	"time"
 	"userservice/internal/data/postgreDB"
-	"userservice/internal/producer"
+	"userservice/internal/messages/producer"
 	"userservice/internal/utils"
 )
 
