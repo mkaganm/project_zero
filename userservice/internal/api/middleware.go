@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"github.com/gofiber/fiber/v2"
 	"time"
-	"userservice/internal/clients/loggerservice"
 	"userservice/internal/data/redisDB"
+	"userservice/internal/messages/producer"
 	"userservice/internal/utils"
 )
 
@@ -19,7 +19,8 @@ func LoggingMiddleware(c *fiber.Ctx) error {
 	endTime := time.Now()
 	duration := endTime.Sub(startTime)
 
-	logData := loggerservice.Log{
+	producer.PublishMongoLogMessage(producer.MongoLogMessage{
+		Collection:     "userservice",
 		Source:         c.IP(),
 		Method:         c.Path(),
 		Request:        string(c.Request().Body()),
@@ -28,8 +29,7 @@ func LoggingMiddleware(c *fiber.Ctx) error {
 		ResponseHeader: string(c.Response().Header.Header()),
 		Duration:       duration.String(),
 		Status:         c.Response().StatusCode(),
-	}
-	loggerservice.SendLog(logData)
+	})
 
 	return err
 }
