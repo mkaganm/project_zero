@@ -17,7 +17,7 @@
 - 5672 rabbitmq
 - 15672 rabbitmq-management
 
-![img.png](img.png)
+![chart.png](chart.png)
 
 
 ### POSTMAN COLLECTIONS
