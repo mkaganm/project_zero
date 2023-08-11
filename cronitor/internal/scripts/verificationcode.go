@@ -1,8 +1,8 @@
 package scripts
 
 import (
-	"cronitor/internal/clients/elastic"
 	"cronitor/internal/data"
+	"cronitor/internal/messages/producer"
 	"log"
 	"time"
 )
@@ -30,6 +30,8 @@ func DeleteExpiredVerifications() {
 		return
 	}
 
-	log.Default().Println("Expired verifications deleted.")
-	elastic.SendLog(esLog)
+	producer.PublishElasticLogMessage(producer.ElasticLogMessage{
+		Index: "cronitor",
+		Data:  esLog,
+	})
 }

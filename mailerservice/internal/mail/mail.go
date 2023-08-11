@@ -2,8 +2,8 @@ package mail
 
 import (
 	"log"
-	"mailerservice/internal/clients/logger"
 	"mailerservice/internal/config"
+	"mailerservice/internal/messages/producer"
 	"net/smtp"
 	"strconv"
 	"time"
@@ -42,7 +42,10 @@ func SendMail(mail Mail) error {
 	}
 
 	log.Default().Println("Email sent successfully!")
-	logger.SendElasticLog(esLog)
+	producer.PublishElasticLogMessage(producer.ElasticLogMessage{
+		Index: "mailerservice",
+		Data:  esLog,
+	})
 	return nil
 
 }

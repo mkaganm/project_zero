@@ -1,7 +1,7 @@
 package main
 
 import (
-	"mailerservice/internal/consumer"
+	"mailerservice/internal/messages/consumer"
 )
 
 func main() {

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"mailerservice/internal/config"
 	"mailerservice/internal/mail"
+	"mailerservice/internal/messages"
 	"mailerservice/internal/utils"
 )
 
@@ -17,11 +18,11 @@ type MailMessage struct {
 func ConsumeMailerQueue() {
 
 	// Connect to RabbitMQ
-	conn := Connect()
-	defer Close(conn)
+	conn := messages.Connect()
+	defer messages.Close(conn)
 	// Create a channel
-	ch := CreateChannel(conn)
-	defer CloseChannel(ch)
+	ch := messages.CreateChannel(conn)
+	defer messages.CloseChannel(ch)
 
 	// Declare a queue
 	msqs, err := ch.Consume(

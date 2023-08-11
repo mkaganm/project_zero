@@ -1,10 +1,10 @@
-package producer
+package messages
 
 import (
+	"cronitor/internal/config"
+	"cronitor/internal/utils"
 	"fmt"
 	"github.com/streadway/amqp"
-	"userservice/internal/config"
-	"userservice/internal/utils"
 )
 
 var RabbitDSN *string
@@ -43,11 +43,11 @@ func CreateChannel(conn *amqp.Connection) *amqp.Channel {
 // Close connection to RabbitMQ
 func Close(conn *amqp.Connection) {
 	err := conn.Close()
-	utils.LogErr("Failed to close connection to RabbitMQ", err)
+	utils.FatalErr("Failed to close connection to RabbitMQ", err)
 }
 
 // CloseChannel channel
 func CloseChannel(ch *amqp.Channel) {
 	err := ch.Close()
-	utils.LogErr("Failed to close channel", err)
+	utils.FatalErr("Failed to close channel", err)
 }

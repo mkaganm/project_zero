@@ -3,6 +3,7 @@ package producer
 import (
 	"encoding/json"
 	"github.com/streadway/amqp"
+	"userservice/internal/messages"
 	"userservice/internal/utils"
 )
 
@@ -16,11 +17,11 @@ type MailMessage struct {
 // PublishMailerMessage is a function to publish message to RabbitMQ for mailerservice
 func PublishMailerMessage(data MailMessage) {
 	// Connect to RabbitMQ
-	conn := Connect()
-	defer Close(conn)
+	conn := messages.Connect()
+	defer messages.Close(conn)
 	// Create a channel
-	ch := CreateChannel(conn)
-	defer CloseChannel(ch)
+	ch := messages.CreateChannel(conn)
+	defer messages.CloseChannel(ch)
 
 	_, err := ch.QueueDeclare(
 		"mailer_queue", // name

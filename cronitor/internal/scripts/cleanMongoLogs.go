@@ -2,9 +2,9 @@ package scripts
 
 import (
 	"context"
-	"cronitor/internal/clients/elastic"
 	"cronitor/internal/config"
 	"cronitor/internal/data"
+	"cronitor/internal/messages/producer"
 	"go.mongodb.org/mongo-driver/bson"
 	"log"
 	"time"
@@ -45,9 +45,13 @@ func CleanMongoLogs() {
 		log.Default().Println("Error while deleting logs from MongoDB")
 		esLog["error"] = err.Error()
 		esLog["status"] = "failed"
+		esLog["error"] = err.Error()
 	}
 
 	// send log to elasticsearch
-	elastic.SendLog(esLog)
+	producer.PublishElasticLogMessage(producer.ElasticLogMessage{
+		Index: "cronitor",
+		Data:  esLog,
+	})
 
 }

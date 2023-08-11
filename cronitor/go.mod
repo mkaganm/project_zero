@@ -6,6 +6,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/spf13/viper v1.16.0
+	github.com/streadway/amqp v1.1.0
 	go.mongodb.org/mongo-driver v1.12.0
 	gorm.io/driver/postgres v1.5.2
 	gorm.io/gorm v1.25.1

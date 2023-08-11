@@ -1,8 +1,8 @@
 package scripts
 
 import (
-	"cronitor/internal/clients/elastic"
 	"cronitor/internal/data"
+	"cronitor/internal/messages/producer"
 	"fmt"
 	"log"
 	"time"
@@ -36,6 +36,9 @@ func ResetLoginAttemptCounts() {
 	}
 
 	log.Default().Println("Login attempt counts reset.")
-	elastic.SendLog(esLog)
+	producer.PublishElasticLogMessage(producer.ElasticLogMessage{
+		Index: "cronitor",
+		Data:  esLog,
+	})
 
 }

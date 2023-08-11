@@ -1,10 +1,10 @@
-package consumer
+package messages
 
 import (
 	"fmt"
 	"github.com/streadway/amqp"
-	"mailerservice/internal/config"
-	"mailerservice/internal/utils"
+	"loggerservice/internal/config"
+	"loggerservice/internal/utils"
 )
 
 var RabbitDSN *string

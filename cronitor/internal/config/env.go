@@ -28,6 +28,10 @@ type envConfigs struct {
 	MongoPass        string `mapstructure:"MONGO_PASS"`
 	MongoDb          string `mapstructure:"MONGO_DB"`
 	LoggerElasticUrl string `mapstructure:"LOGGER_ELASTIC_URL"`
+	RabbitMQUser     string `mapstructure:"RABBITMQ_USER"`
+	RabbitMQPass     string `mapstructure:"RABBITMQ_PASS"`
+	RabbitMQHost     string `mapstructure:"RABBITMQ_HOST"`
+	RabbitMQPort     string `mapstructure:"RABBITMQ_PORT"`
 }
 
 // loadEnvVariables loads all environment variables from the userservice.env file
