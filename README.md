@@ -38,8 +38,6 @@ make run
 
 ## USERSERVICE
 
-### ENDPOINTS
-
 #### REGISTER
 - [POST] /api/v1/user/register
 - [POST] /api/v1/user/confirm-register
@@ -55,11 +53,4 @@ make run
 - [POST] /api/v1/user/send-verificaton-code
 - [POST] /api/v1/user/forgot-password
 
-## MAILERSERVICE
-- [POST] /api/v1/mailer/send
-
-## LOGGERSERVICE
-- [POST] /api/v1/logger/mongoLog
-- [GET] /api/v1/logger/log
-- [POST] /api/v1/logger/elasticLog
 
