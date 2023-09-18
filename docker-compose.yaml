@@ -152,6 +152,10 @@ services:
       context: ./loggerservice
       dockerfile: loggerservice.dockerfile
     container_name: loggerservice
+    depends_on:
+      - rabbitmq
+      - mongo_db
+      - elasticsearch
     restart: always
     ports:
       - "3003:3003"
@@ -187,6 +191,10 @@ services:
       context: ./cronitor
       dockerfile: cronitor.dockerfile
     container_name: cronitor
+    depends_on:
+      - mongo_db
+      - db
+      - elasticsearch
     restart: always
     networks:
       - network
